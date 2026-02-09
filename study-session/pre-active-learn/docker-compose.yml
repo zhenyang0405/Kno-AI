@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Pre-Active-Learn Service
+  pre-active-learn:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pre-active-learn-service
+    restart: unless-stopped
+    ports:
+      - "8003:8003"
+    environment:
+      # Database (connect to external database)
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_PORT: ${DB_PORT}
+      
+      # Gemini API
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      GEMINI_THINKING_MODEL: ${GEMINI_THINKING_MODEL}
+      
+      # Google Cloud Storage
+      GCS_PROJECT_ID: ${GCS_PROJECT_ID}
+      GCS_BUCKET_NAME: ${GCS_BUCKET_NAME}
+      GOOGLE_APPLICATION_CREDENTIALS: /app/gcs-key.json
+    volumes:
+      # Mount credentials if using local file
+      - ${GCS_CREDENTIALS_PATH}:/app/gcs-key.json:ro
+    # Use host network mode to access host's database
+    # Or use default bridge network with host.docker.internal
+    network_mode: bridge
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

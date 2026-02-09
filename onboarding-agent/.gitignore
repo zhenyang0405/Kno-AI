@@ -1,0 +1,6 @@
+.env
+.venv
+.adk
+./chat_agent/.env
+./chat_agent/__pycache__
+./chat_agent/.adk

@@ -1,0 +1,8 @@
+google-genai
+google-cloud-storage
+python-dotenv
+fastapi
+uvicorn
+google-adk
+websockets
+psycopg2-binary

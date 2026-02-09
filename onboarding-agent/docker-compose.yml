@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  # The AI Onboarding Agent
+  onboarding-agent:
+    build: .
+    ports:
+      - "8001:8001"
+    environment:
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - DB_HOST=${DB_HOST} # Connect to your local database
+      - DB_NAME=${DB_NAME} # Update to your local DB name
+      - DB_USER=${DB_USER} # Update to your local DB user
+      - DB_PASS=${DB_PASS} # Update to your local DB password
+      - DB_PORT=${DB_PORT} # The port your local DB is listening on
+    # Add this to allow the container to reach your host's localhost
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
