@@ -15,7 +15,7 @@ DB_PORT = os.getenv("DB_PORT", "5432")
 
 # Google Cloud Configuration
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "")
-GCS_BUCKET_NAME = os.getenv("GCS_BUCKET_NAME", "ai-educate-materials")
+GCS_BUCKET_NAME = os.getenv("GCS_BUCKET_NAME")
 
 # Model Configuration
 MODEL_GEMINI_FLASH = "gemini-2.5-flash"
